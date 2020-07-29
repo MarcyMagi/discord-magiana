@@ -1,0 +1,30 @@
+{
+  "name": "discord-magi",
+  "version": "1.0.0",
+  "description": "Discord Bot",
+  "main": "main.js",
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "nodemon": "^2.0.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarcyMagi/discord-magi.git"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "js",
+    "javascript"
+  ],
+  "author": "Doka",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarcyMagi/discord-magi/issues"
+  },
+  "homepage": "https://github.com/MarcyMagi/discord-magi#readme"
+}
