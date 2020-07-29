@@ -2,9 +2,10 @@ const Argument = require("./Argument.js")
 let config = null
 
 
-allCommands = []
-defaultArgument = new Argument()
+let allCommands = []
+let defaultArgument = new Argument()
 
+//---- Internal functions  ----
 
 //search in all commands the call that the user made
 function commandFromCallMethod(callMethod) {
@@ -19,6 +20,7 @@ function inTestCheck(command, msg) {
 
     if(command.inTest) {
 
+        //check if message was send in the same guild setted for testing and all it rooms
         if(msg.guild.id == config["test-guild"]) {
             for(let i = 0; i < config["test-rooms"].length; i++) {
             
@@ -34,6 +36,7 @@ function inTestCheck(command, msg) {
     return true
 }
 
+// ------------------
 
 class Command {
     constructor(title, callMethod, workoutFunction, 
