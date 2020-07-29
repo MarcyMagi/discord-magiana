@@ -16,19 +16,19 @@ function commandFromCallMethod(callMethod) {
 }
 
 function inTestCheck(command, msg) {
-    console.log(command.inTest)
 
     if(command.inTest) {
-        if(msg.guild.id == config["test-guild"]) {
-            console.log(command.inTest)
-            return false
-        }
 
-        for(let i = 0; i < config["test-rooms"]; i++) {
-            if(msg.channel.id == config["test-rooms"][i]) {
-                return false
+        if(msg.guild.id == config["test-guild"]) {
+            for(let i = 0; i < config["test-rooms"].length; i++) {
+            
+                if(msg.channel.id == config["test-rooms"][i]) {
+                    return true
+                }
             }
         }
+
+        return false
     }
 
     return true
@@ -69,7 +69,7 @@ class Command {
         let msgPrefix = content[0]
     
         let prefixCheck = msgPrefix == config["default-prefix"]
-    
+
         //skip if isn't calling the bot
         if(!prefixCheck)
             return
@@ -85,10 +85,14 @@ class Command {
         
         let command = commandFromCallMethod(commandCall)
 
-
         //skip if isn't a valid command
         if(!command)
             return
+
+
+        if(!inTestCheck(command, msg))
+            return
+        
 
         let argumentStatus = command.arguments.checkArguments(argsStr)
 
@@ -99,9 +103,6 @@ class Command {
             command.arguments.errorReply(argumentStatus) //return a response if arguments are wrong
     
     }
-
-
-
 
 
     static setConfig(s) {

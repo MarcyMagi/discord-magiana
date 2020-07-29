@@ -20,7 +20,7 @@ module.exports = {
         Command.setConfig(config['command-settings'])
 
         function testF(msg) {
-            //console.log(msg)
+            console.log(msg)
         }
         
         let test = new Command("Test", "test", testF, "")
