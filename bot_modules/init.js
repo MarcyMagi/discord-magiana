@@ -1,7 +1,7 @@
 const fs = require("fs")
 const Command = require("./commands/classes/Command")
 
-//Getting config data
+//getting config data from file
 let rawConfigData = fs.readFileSync("config.json")
 const config = JSON.parse(rawConfigData)
 
@@ -15,6 +15,8 @@ module.exports = {
         console.log("Running!")
     },
 
+
+    // ---- MAYBE WILL CHAGNGE ----
     initCommands: function() {
         
         Command.setConfig(config['command-settings'])
