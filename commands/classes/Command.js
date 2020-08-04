@@ -1,9 +1,10 @@
 const Argument = require("./Argument.js")
-let config = null
 
 
+let config
 let allCommands = []
 let defaultArgument = new Argument()
+let defaultHelp = ""
 
 //---- Internal functions  ----
 
@@ -39,15 +40,14 @@ function inTestCheck(command, msg) {
 // ------------------
 
 class Command {
-    constructor(title, callMethod, workoutFunction, 
-        helpMessage = undefined, args = defaultArgument) {
+    constructor(title, callMethod, workoutFunction, args = defaultArgument) {
         
         this.title = title //name of the command
         this.callMethod = callMethod //what the user need to type after the prefix
         this.workoutFunction = workoutFunction //function that will be called
-        this.helpMessage = helpMessage //basic descripition for use of the command
+        this.helpMessage = defaultHelp //basic descripition for use of the command
         this.arguments = args //instance of a argument object with the argument specs of the commamd
-        this.inTest = false //commands in test will be only executable in the test channels (config)
+        this.inTest = false //commands in test will be only executable in the test channels (see settings.json file)
 
         allCommands.push(this)
 
@@ -60,6 +60,10 @@ class Command {
             this.inTest = false
     }
 
+    sethelpMessage(msg) {
+        this.helpMessage = msg
+    }
+
 
     static get COMMANDS() {
         return allCommands 
@@ -67,10 +71,12 @@ class Command {
 
     //validate the prefix and the command call
     static validateCommand(msg) {
+
         let content = msg.content
+        
         //get the prefix
         let msgPrefix = content[0]
-    
+        
         let prefixCheck = msgPrefix == config["default-prefix"]
 
         //skip if isn't calling the bot
@@ -89,11 +95,7 @@ class Command {
         let command = commandFromCallMethod(commandCall)
 
         //skip if isn't a valid command
-        if(!command)
-            return
-
-
-        if(!inTestCheck(command, msg))
+        if(!command || !inTestCheck(command, msg))
             return
         
 
