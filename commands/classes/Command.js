@@ -1,10 +1,15 @@
 const Argument = require("./Argument.js")
 
 
+<<<<<<< HEAD:commands/classes/Command.js
 let config
 let allCommands = []
 let defaultArgument = new Argument()
 let defaultHelp = ""
+=======
+let allCommands = []
+let defaultArgument = new Argument()
+>>>>>>> bc4ee95c6414a725bccdc82a84be70fac38c2f9d:bot_modules/commands/classes/Command.js
 
 //---- Internal functions  ----
 
