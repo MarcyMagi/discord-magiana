@@ -1,8 +1,11 @@
 const Command = require("../commands/classes/Command")
+const anch = require("../serverConnection/acnh")
 
 module.exports = {
 
     createCommands: function() {
+
+        anch.getProfile("discord_id", "300")
 
         function testF(msg) {
             console.log(msg)
